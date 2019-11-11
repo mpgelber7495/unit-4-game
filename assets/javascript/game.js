@@ -20,9 +20,12 @@ function addCharactersToSelectionArea() {
       characters[i]
     );
   }
+  $(".your-character-row").toggle();
 }
 addCharactersToSelectionArea();
 
 $(".character-holder").click(function(event) {
   yourCharacter = event.currentTarget.id;
+  $(".select-character-row").toggle();
+  $(".your-character-row").toggle();
 });

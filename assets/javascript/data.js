@@ -18,13 +18,13 @@ var characters = [
     healthPoints: 140,
     attackPower: 6,
     counterAttackPower: 20,
-    imageURL: "img"
+    imageURL: "./assets/images/paul_image.png"
   },
   {
     name: "John",
     healthPoints: 140,
     attackPower: 6,
     counterAttackPower: 20,
-    imageURL: "img"
+    imageURL: "./assets/images/john_image.png"
   }
 ];

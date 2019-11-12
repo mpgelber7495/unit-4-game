@@ -44,8 +44,8 @@ function addCharactersToEnemiesToAttackArea(selectedCharacterName) {
     if (characters[i]["name"] !== selectedCharacterName) {
       addCharactersToAreaClass(
         characters[i],
-        ".enemies-to-attack",
-        "enemies-character-holder"
+        ".enemies-to-attack-holder",
+        "enemy"
       );
     }
   }
@@ -57,15 +57,15 @@ $(".character-holder").click(function(event) {
   $(".select-character-row").toggle();
   $(".your-character-row").toggle();
   $(".enemies-to-attack").toggle();
-  addCharactersToAreaClass(yourCharacter, ".your-character-row");
+  addCharactersToAreaClass(yourCharacter, ".your-character-row-holder");
   addCharactersToEnemiesToAttackArea(yourCharacterName);
 });
 
-$(".character-holder").click(function(event) {
-  console.log(event);
-  console.log(event.currentTarget.id);
-  var defenseCharacterName = event.currentTarget.id;
+$(".enemies-to-attack").on("click", ".enemy", function(event) {
+  console.log("this", $(this));
+  console.log("event", event);
+  var defenseCharacterName = $(this).attr("id");
   defenseCharacter = selectCharacterByName(defenseCharacterName);
-  console.log(defenseCharacterName);
+  console.log("defenseCharacterName", defenseCharacterName);
   console.log("#" + defenseCharacterName);
 });

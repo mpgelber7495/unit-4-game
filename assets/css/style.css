@@ -11,9 +11,11 @@ body {
   font-size: 50px;
   font-family: "Josefin Sans", sans-serif;
 }
-.game-stage-heading {
+.game-stage-heading,
+#main-heading-holder,
+.section-header {
   margin-top: 5px;
-  color: black;
+  color: white;
   /* font-weight: bold; */
   font-family: "Josefin Sans", sans-serif;
   font-size: 45px;
@@ -23,8 +25,16 @@ body {
 
 .container {
   /* background-image: url("../images/cork_board.png"); */
-  background-color: aquamarine;
-  height: 90%;
+  background: rgb(2, 1, 15);
+  background: linear-gradient(
+    135deg,
+    rgba(2, 1, 15, 0.9066001400560224) 7%,
+    rgba(9, 121, 102, 1) 55%,
+    rgba(0, 0, 0, 0.9009978991596639) 100%
+  );
+  height: 98%;
+  padding: 15px;
+  border: 5px solid white;
 }
 .character-holder {
   width: 120px;
@@ -56,7 +66,20 @@ body {
 
 .battle-ground button {
   margin: 4px;
-  background-color: aqua;
+  background-color: rgba(178, 34, 34, 0.8);
+  border-radius: 10px;
+  border: 3px solid black;
+  font-size: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Bowlby One", cursive;
+}
+
+.battle-ground button:hover {
+  opacity: 1;
+  background-color: white;
+  border: 5px solid red;
+  color: firebrick;
 }
 
 #fight-description-holder {

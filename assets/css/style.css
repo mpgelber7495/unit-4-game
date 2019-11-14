@@ -9,3 +9,8 @@
 .enemy {
   border: 4px solid red;
 }
+
+.engaged-enemy {
+  border: 4px solid black;
+  background-color: firebrick;
+}

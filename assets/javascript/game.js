@@ -24,6 +24,7 @@ function addCharactersToSelectionArea() {
   }
   $(".your-character-row").toggle();
   $(".enemies-to-attack").toggle();
+  $(".battle-ground").toggle();
 }
 addCharactersToSelectionArea();
 
@@ -63,9 +64,13 @@ $(".character-holder").click(function(event) {
 
 $(".enemies-to-attack").on("click", ".enemy", function(event) {
   console.log("this", $(this));
-  console.log("event", event);
   var defenseCharacterName = $(this).attr("id");
   defenseCharacter = selectCharacterByName(defenseCharacterName);
-  console.log("defenseCharacterName", defenseCharacterName);
-  console.log("#" + defenseCharacterName);
+  $(this).remove();
+  addCharactersToAreaClass(
+    defenseCharacter,
+    ".battle-ground-container",
+    "engaged-enemy"
+  );
+  $(".battle-ground").toggle();
 });

@@ -11,6 +11,16 @@ body {
   font-size: 50px;
   font-family: "Josefin Sans", sans-serif;
 }
+.game-stage-heading {
+  margin-top: 5px;
+  color: black;
+  /* font-weight: bold; */
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 45px;
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: gray; */
+}
+
 .container {
   background-image: url("../images/cork_board.png");
   height: 75%;
@@ -26,6 +36,8 @@ body {
 }
 
 .character-image {
+  border-radius: 45px;
+  margin-bottom: 10px;
 }
 
 .enemy {

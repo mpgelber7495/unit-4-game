@@ -2,30 +2,30 @@ function newCharactersArr() {
   return [
     {
       name: "Mike",
-      healthPoints: 140,
-      attackPower: 6,
+      healthPoints: 190,
+      attackPower: 8,
       counterAttackPower: 20,
       imageURL: "./assets/images/mike_image.png"
     },
     {
       name: "Rafi",
-      healthPoints: 140,
-      attackPower: 6,
-      counterAttackPower: 20,
+      healthPoints: 90,
+      attackPower: 10,
+      counterAttackPower: 25,
       imageURL: "./assets/images/rafi_image.png"
     },
     {
       name: "Paul",
-      healthPoints: 140,
-      attackPower: 6,
-      counterAttackPower: 20,
+      healthPoints: 100,
+      attackPower: 4,
+      counterAttackPower: 10,
       imageURL: "./assets/images/paul_image.png"
     },
     {
       name: "John",
-      healthPoints: 140,
-      attackPower: 6,
-      counterAttackPower: 20,
+      healthPoints: 160,
+      attackPower: 3,
+      counterAttackPower: 35,
       imageURL: "./assets/images/john_image.png"
     }
   ];
@@ -68,3 +68,6 @@ var attackNames = [
 
 var crown = $('<img id="crown" class="w-100 position-relative">');
 crown.attr("src", "../assets/images/crown.png");
+
+var cross = $('<img id="cross" class="w-100 position-relative">');
+cross.attr("src", "../assets/images/cross.png");

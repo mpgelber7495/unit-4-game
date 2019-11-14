@@ -1,6 +1,5 @@
 // 1. create responses for when someone wins and dies
 // 2. Create alerts and responses for game over or game Won
-// 3. Each time an attack happens, display some fun description of what happened
 // 4. Switch up the stats on characters
 // 5. Styling
 
@@ -12,23 +11,13 @@ var enemyCharacter;
 var isBattleGroundLaunched = false;
 var countOfDefeatedEnemies = 0;
 var gameIsOver = false;
-var didWinJustOccur = false;
+var didWinOrLossJustOccur = false;
 function createCharacterBox(character, characterClass = "") {
-  var charachterHTML =
-    '<div id="' +
-    character["name"] +
-    '"class="mx-3 character-holder ' +
-    characterClass +
-    ' d-flex flex-column align-items-center"> <p class="mb-0 character-name">' +
-    character["name"] +
-    '</p> <img class="character-image w-100" src="' +
-    character["imageURL"] +
-    '" alt="character image"/><p class="mb-0 character-health-points" id="' +
-    character["name"] +
-    '-health-points">' +
-    character["healthPoints"] +
-    " </p> </div>";
-  return charachterHTML;
+  var { name, imageURL, healthPoints } = character;
+  return `<div id="${name}" class="mx-3 character-holder ${characterClass} d-flex flex-column align-items-center"> 
+    <p class="mb-0 character-name">${name}</p>
+    <img class="character-image w-100" src="${imageURL}" alt="character image"/>
+    <p class="mb-0 character-health-points" id="${name}-health-points">${healthPoints}</p> </div>`;
 }
 
 $("#restart-button").toggle();
@@ -141,6 +130,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
       $("#restart-button").toggle();
       $("#" + yourCharacter["name"] + "-health-points").text(0);
       gameIsOver = true;
+      gameLost();
     }
   }
 }
@@ -157,7 +147,7 @@ function restartGame() {
   $(".select-character-row").toggle();
   $(".your-character-holder").html("");
   $(".battle-ground-container").html("");
-  if (didWinJustOccur === true) {
+  if (didWinOrLossJustOccur === true) {
     $(".battle-ground").toggle();
     $(".enemies-to-attack").toggle();
     $("#main-heading-holder").text("Your Character");
@@ -197,7 +187,15 @@ function fightDescription(yourCharacter, engagedEnemy) {
 function gameWon() {
   $(".battle-ground").toggle();
   $(".enemies-to-attack").toggle();
-  didWinJustOccur = true;
+  didWinOrLossJustOccur = true;
   $("#main-heading-holder").html(yourCharacter["name"] + " WON!!");
   $("#" + yourCharacter["name"]).append(crown);
+}
+
+function gameLost() {
+  $(".battle-ground").toggle();
+  $(".enemies-to-attack").toggle();
+  didWinOrLossJustOccur = true;
+  $("#main-heading-holder").html("YIKES - you lost!!!");
+  $("#" + yourCharacter["name"]).append(cross);
 }

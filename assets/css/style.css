@@ -1,5 +1,5 @@
 html {
-  height: 100%;
+  min-height: 800px;
 }
 body {
   background-image: url("../images/424-house.jpg");
@@ -97,4 +97,8 @@ body {
 
 #crown {
   bottom: 135px;
+}
+
+#cross {
+  bottom: 120px;
 }

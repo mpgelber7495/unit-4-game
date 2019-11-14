@@ -2,6 +2,7 @@ var yourCharacter;
 var isEnemyEngaged = false;
 var yourCharacterOriginalAttackPower;
 var enemyCharacter;
+var isBattleGroundLaunched = false;
 function createCharacterBox(character, characterClass = "") {
   var charachterHTML =
     '<div id="' +
@@ -58,14 +59,16 @@ function addCharactersToEnemiesToAttackArea(selectedCharacterName) {
 
 // Listen for the selection of yourCharacter and move the rest of the characters to the enemies to attack area
 $(".character-holder").click(function(event) {
-  yourCharacterName = event.currentTarget.id;
-  yourCharacter = selectCharacterByName(yourCharacterName);
-  $(".select-character-row").toggle();
-  $(".your-character-row").toggle();
-  $(".enemies-to-attack").toggle();
-  addCharactersToAreaClass(yourCharacter, ".your-character-row-holder");
-  addCharactersToEnemiesToAttackArea(yourCharacterName);
-  yourCharacterOriginalAttackPower = yourCharacter["attackPower"];
+  if (!yourCharacter) {
+    yourCharacterName = event.currentTarget.id;
+    yourCharacter = selectCharacterByName(yourCharacterName);
+    $(".select-character-row").remove();
+    $(".your-character-row").toggle();
+    $(".enemies-to-attack").toggle();
+    addCharactersToAreaClass(yourCharacter, ".your-character-row-holder");
+    addCharactersToEnemiesToAttackArea(yourCharacterName);
+    yourCharacterOriginalAttackPower = yourCharacter["attackPower"];
+  }
 });
 
 // Listen for you to select an enemy if isEnemyEngaged is false
@@ -80,8 +83,10 @@ $(".enemies-to-attack").on("click", ".enemy", function(event) {
       ".battle-ground-container",
       "engaged-enemy"
     );
-    $(".battle-ground").toggle();
-    isEnemyEngaged = true;
+    if (!isBattleGroundLaunched) {
+      $(".battle-ground").toggle();
+      isBattleGroundLaunched = true;
+    } else isEnemyEngaged = true;
   }
 });
 
@@ -92,14 +97,15 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     yourCharacter["healthPoints"] - engagedEnemy["attackPower"];
   var yourCharacterNewAttackPower =
     yourCharacter["attackPower"] + yourCharacterOriginalAttackPower;
-  // console.log("goodHealth: ", yourCharacterNewHealth);
-  // console.log("badHealth: ", enemyNewHealth);
-  // console.log("newattack: ", yourCharacterNewAttackPower);
   engagedEnemy["healthPoints"] = enemyNewHealth;
   yourCharacter["healthPoints"] = yourCharacterNewHealth;
   yourCharacter["attackPower"] = yourCharacterNewAttackPower;
   refreshCharacterHealthPointsOnDOM(yourCharacter);
   refreshCharacterHealthPointsOnDOM(engagedEnemy);
+  if (enemyNewHealth <= 0) {
+    $("#" + engagedEnemy["name"]).remove();
+    isEnemyEngaged = false;
+  }
 }
 
 function refreshCharacterHealthPointsOnDOM(character) {
@@ -107,7 +113,3 @@ function refreshCharacterHealthPointsOnDOM(character) {
   var characterID = "#" + character["name"] + "-health-points";
   $(characterID).text(newHealthPoints);
 }
-
-// $(document).ready(function() {
-//   $("#fight-button").click(enemiesFight(yourCharacter, enemyCharacter));
-// });

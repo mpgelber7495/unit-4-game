@@ -16,55 +16,65 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <!-- Google fonts for Josefin Sans -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <header>
       <div class="row">
-        <div class="col-7"></div>
-        <div class="col-5"><h3>424 E 9th St Showdown</h3></div>
+        <div class="col-12 d-flex justify-content-center">
+          <h3 class="heading-text">424 E 9th St Showdown</h3>
+        </div>
       </div>
     </header>
     <div class="container">
       <div class="row select-character-row">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
           <h4>Select your character</h4>
         </div>
       </div>
       <div class="row select-character-row">
-        <div class="col-12 select-character-holder d-flex"></div>
+        <div
+          class="col-12 select-character-holder d-flex justify-content-center"
+        ></div>
       </div>
 
       <div class="row your-character-row ">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
           <h4>Your Character</h4>
         </div>
       </div>
       <div class="row your-character-row-holder ">
         <div
-          class="col-12 select-character-holder your-character-holder d-flex"
+          class="col-12 select-character-holder your-character-holder d-flex justify-content-center"
         ></div>
       </div>
       <div class="row enemies-to-attack">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
           <h4>Enemies to Attack</h4>
         </div>
       </div>
       <div class="row enemies-to-attack ">
         <div
-          class="col-12 select-character-holder d-flex enemies-to-attack-holder"
+          class="col-12 select-character-holder d-flex enemies-to-attack-holder justify-content-center"
         ></div>
       </div>
       <div class="row battle-ground">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
           <h4>Battle Ground!!</h4>
         </div>
       </div>
       <div class="row battle-ground ">
-        <div class="col-12 d-flex battle-ground-container"></div>
+        <div
+          class="col-12 d-flex battle-ground-container d-flex justify-content-center"
+        ></div>
       </div>
       <div class="row battle-ground">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
           <button
             id="fight-button"
             onclick="enemiesFight(yourCharacter, enemyCharacter)"
@@ -74,7 +84,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 d-flex justify-content-center">
           <button id="restart-button" onclick="restartGame()">
             Restart
           </button>

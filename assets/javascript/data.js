@@ -41,5 +41,14 @@ var attackNames = [
   "radeghasted",
   "exfoliated",
   "quentin tarantino'd",
-  "posed a strongly worded argument to"
+  "posed a strongly worded argument to",
+  "karate chopped",
+  "gave a bad haircut to",
+  "pterodactyl'd",
+  "gave a stern talking to",
+  "lectured",
+  "parma-steved",
+  "soccum-bopped",
+  "will ferrell'd",
+  "arm wrestled"
 ];

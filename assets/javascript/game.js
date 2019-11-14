@@ -97,6 +97,7 @@ $(".enemies-to-attack").on("click", ".enemy", function(event) {
       ".battle-ground-container",
       "engaged-enemy"
     );
+    $("#fight-description-holder").html("");
     if (!isBattleGroundLaunched) {
       $(".battle-ground").toggle();
       isBattleGroundLaunched = true;
@@ -170,15 +171,15 @@ function fightDescription(yourCharacter, engagedEnemy) {
     engagedEnemy["name"] +
     " causing " +
     yourCharacter["attackPower"] +
-    " in damage!!!<br>" +
+    " in damage! <br> " +
     engagedEnemy["name"] +
     " retaliated and " +
     attackNames[Math.floor(Math.random() * attackNames.length)] +
     " " +
-    engagedEnemy["name"] +
+    yourCharacter["name"] +
     " causing " +
     engagedEnemy["attackPower"] +
-    " in damage!!";
+    " in damage - OUCH!";
   console.log(fightText);
   $("#fight-description-holder").html(fightText);
 }

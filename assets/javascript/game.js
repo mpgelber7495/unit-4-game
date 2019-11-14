@@ -3,6 +3,7 @@ var isEnemyEngaged = false;
 var yourCharacterOriginalAttackPower;
 var enemyCharacter;
 var isBattleGroundLaunched = false;
+var countOfDefeatedEnemies = 0;
 function createCharacterBox(character, characterClass = "") {
   var charachterHTML =
     '<div id="' +
@@ -20,6 +21,7 @@ function createCharacterBox(character, characterClass = "") {
     " </p> </div>";
   return charachterHTML;
 }
+$("#restart-button").toggle();
 
 function addCharactersToSelectionArea() {
   for (var i = 0; i < characters.length; i++) {
@@ -104,7 +106,15 @@ function enemiesFight(yourCharacter, engagedEnemy) {
   refreshCharacterHealthPointsOnDOM(engagedEnemy);
   if (enemyNewHealth <= 0) {
     $("#" + engagedEnemy["name"]).remove();
+    countOfDefeatedEnemies++;
     isEnemyEngaged = false;
+    if (countOfDefeatedEnemies === characters.length - 1) {
+      //YOU WIN
+    }
+  }
+  if (yourCharacterNewHealth <= 0) {
+    gameOver();
+    $("#" + yourCharacter["name"] + "-health-points").text(0);
   }
 }
 
@@ -112,4 +122,12 @@ function refreshCharacterHealthPointsOnDOM(character) {
   var newHealthPoints = character["healthPoints"];
   var characterID = "#" + character["name"] + "-health-points";
   $(characterID).text(newHealthPoints);
+}
+
+function gameOver() {
+  $("#restart-button").toggle();
+}
+
+function restartGame() {
+  $("#restart-button").toggle();
 }

@@ -62,19 +62,22 @@ function addCharactersToEnemiesToAttackArea(selectedCharacterName) {
 }
 
 // Listen for the selection of yourCharacter and move the rest of the characters to the enemies to attack area
-$(".character-holder").click(function(event) {
-  if (!yourCharacter) {
-    yourCharacterName = event.currentTarget.id;
-    yourCharacter = selectCharacterByName(yourCharacterName);
-    $(".select-character-holder").html("");
-    $(".select-character-row").toggle();
-    $(".your-character-row").toggle();
-    $(".enemies-to-attack").toggle();
-    addCharactersToAreaClass(yourCharacter, ".your-character-holder");
-    addCharactersToEnemiesToAttackArea(yourCharacterName);
-    yourCharacterOriginalAttackPower = yourCharacter["attackPower"];
-  }
-});
+function yourCharacterEventListener() {
+  $(".character-holder").click(function(event) {
+    if (!yourCharacter) {
+      yourCharacterName = event.currentTarget.id;
+      yourCharacter = selectCharacterByName(yourCharacterName);
+      $(".select-character-holder").html("");
+      $(".select-character-row").toggle();
+      $(".your-character-row").toggle();
+      $(".enemies-to-attack").toggle();
+      addCharactersToAreaClass(yourCharacter, ".your-character-holder");
+      addCharactersToEnemiesToAttackArea(yourCharacterName);
+      yourCharacterOriginalAttackPower = yourCharacter["attackPower"];
+    }
+  });
+}
+yourCharacterEventListener();
 
 // Listen for you to select an enemy if isEnemyEngaged is false
 $(".enemies-to-attack").on("click", ".enemy", function(event) {
@@ -142,4 +145,5 @@ function restartGame() {
   isBattleGroundLaunched = false;
   countOfDefeatedEnemies = 0;
   addCharactersToSelectionArea();
+  yourCharacterEventListener();
 }

@@ -65,3 +65,6 @@ var attackNames = [
   "vented about work to",
   "defrauded"
 ];
+
+var crown = $('<img id="crown" class="w-100 position-relative">');
+crown.attr("src", "../assets/images/crown.png");

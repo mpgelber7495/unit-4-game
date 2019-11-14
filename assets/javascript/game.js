@@ -12,11 +12,12 @@ var enemyCharacter;
 var isBattleGroundLaunched = false;
 var countOfDefeatedEnemies = 0;
 var gameIsOver = false;
+var didWinJustOccur = false;
 function createCharacterBox(character, characterClass = "") {
   var charachterHTML =
     '<div id="' +
     character["name"] +
-    '"class="mx-1 character-holder ' +
+    '"class="mx-3 character-holder ' +
     characterClass +
     ' d-flex flex-column align-items-center"> <p class="mb-0 character-name">' +
     character["name"] +
@@ -92,6 +93,7 @@ $(".enemies-to-attack").on("click", ".enemy", function(event) {
     var enemyCharacterName = $(this).attr("id");
     enemyCharacter = selectCharacterByName(enemyCharacterName);
     $(this).remove();
+    $(".battle-ground-container").html("");
     addCharactersToAreaClass(
       enemyCharacter,
       ".battle-ground-container",
@@ -122,6 +124,9 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     refreshCharacterHealthPointsOnDOM(engagedEnemy);
     if (enemyNewHealth <= 0) {
       $("#" + engagedEnemy["name"]).remove();
+      $(".battle-ground-container").html(
+        "<p class='select-enemy-alert'>Select another enemy!</p>"
+      );
       countOfDefeatedEnemies++;
       isEnemyEngaged = false;
 
@@ -129,6 +134,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
         isEnemyEngaged = false;
         gameIsOver = true;
         $("#restart-button").toggle();
+        gameWon();
       }
     }
     if (yourCharacterNewHealth <= 0) {
@@ -151,6 +157,11 @@ function restartGame() {
   $(".select-character-row").toggle();
   $(".your-character-holder").html("");
   $(".battle-ground-container").html("");
+  if (didWinJustOccur === true) {
+    $(".battle-ground").toggle();
+    $(".enemies-to-attack").toggle();
+    $("#main-heading-holder").text("Your Character");
+  }
   yourCharacter = undefined;
   isEnemyEngaged = false;
   yourCharacterOriginalAttackPower;
@@ -180,6 +191,13 @@ function fightDescription(yourCharacter, engagedEnemy) {
     " causing " +
     engagedEnemy["attackPower"] +
     " in damage - OUCH!";
-  console.log(fightText);
   $("#fight-description-holder").html(fightText);
+}
+
+function gameWon() {
+  $(".battle-ground").toggle();
+  $(".enemies-to-attack").toggle();
+  didWinJustOccur = true;
+  $("#main-heading-holder").html(yourCharacter["name"] + " WON!!");
+  $("#" + yourCharacter["name"]).append(crown);
 }

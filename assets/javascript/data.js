@@ -32,7 +32,7 @@ function newCharactersArr() {
 }
 
 var attackNames = [
-  "funkHauser kicked",
+  "funk-hauser kicked",
   "curb stomped",
   "slam dunked",
   "defenistrated",
@@ -50,5 +50,18 @@ var attackNames = [
   "parma-steved",
   "soccum-bopped",
   "will ferrell'd",
-  "arm wrestled"
+  "arm wrestled",
+  "chinchilla'd",
+  "hexed",
+  "cried to",
+  "falcon punched",
+  "new jersey'd",
+  "baltimore'd",
+  "sub-leased",
+  "medical-schooled",
+  "chicken pot-pie'd",
+  "scrap booked with",
+  "split chilli on",
+  "vented about work to",
+  "defrauded"
 ];

@@ -1,3 +1,9 @@
+// 1. create responses for when someone wins and dies
+// 2. Create alerts and responses for game over or game Won
+// 3. Each time an attack happens, display some fun description of what happened
+// 4. Switch up the stats on characters
+// 5. Styling
+
 var charactersInstant = newCharactersArr();
 var yourCharacter;
 var isEnemyEngaged = false;

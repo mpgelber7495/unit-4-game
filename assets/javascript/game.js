@@ -116,6 +116,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     engagedEnemy["healthPoints"] = enemyNewHealth;
     yourCharacter["healthPoints"] = yourCharacterNewHealth;
     yourCharacter["attackPower"] = yourCharacterNewAttackPower;
+    fightDescription(yourCharacter, engagedEnemy);
     refreshCharacterHealthPointsOnDOM(yourCharacter);
     refreshCharacterHealthPointsOnDOM(engagedEnemy);
     if (enemyNewHealth <= 0) {
@@ -158,4 +159,26 @@ function restartGame() {
   gameIsOver = false;
   addCharactersToSelectionArea();
   yourCharacterEventListener();
+}
+
+function fightDescription(yourCharacter, engagedEnemy) {
+  var fightText =
+    yourCharacter["name"] +
+    " " +
+    attackNames[Math.floor(Math.random() * attackNames.length)] +
+    " " +
+    engagedEnemy["name"] +
+    " causing " +
+    yourCharacter["attackPower"] +
+    " in damage!!!<br>" +
+    engagedEnemy["name"] +
+    " retaliated and " +
+    attackNames[Math.floor(Math.random() * attackNames.length)] +
+    " " +
+    engagedEnemy["name"] +
+    " causing " +
+    engagedEnemy["attackPower"] +
+    " in damage!!";
+  console.log(fightText);
+  $("#fight-description-holder").html(fightText);
 }

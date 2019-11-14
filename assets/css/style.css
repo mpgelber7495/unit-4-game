@@ -22,8 +22,9 @@ body {
 }
 
 .container {
-  background-image: url("../images/cork_board.png");
-  height: 75%;
+  /* background-image: url("../images/cork_board.png"); */
+  background-color: aquamarine;
+  height: 85%;
 }
 .character-holder {
   width: 120px;
@@ -56,4 +57,9 @@ body {
 .battle-ground button {
   margin: 4px;
   background-color: aqua;
+}
+
+#fight-description-holder {
+  text-align: center;
+  color: red;
 }

@@ -30,3 +30,16 @@ function newCharactersArr() {
     }
   ];
 }
+
+var attackNames = [
+  "funkHauser kicked",
+  "curb stomped",
+  "slam dunked",
+  "defenistrated",
+  "dumpling manned",
+  "quantized",
+  "radeghasted",
+  "exfoliated",
+  "quentin tarantino'd",
+  "posed a strongly worded argument to"
+];

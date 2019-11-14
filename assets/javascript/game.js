@@ -1,5 +1,6 @@
 // 1. create responses for when someone wins and dies
-// 2. Create alerts and responses for game over or game Won
+// MAKE RESET BUTTON BETTER
+// PREVENT THE end holder from expanding really big
 // 4. Switch up the stats on characters
 // 5. Styling
 
@@ -114,7 +115,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     if (enemyNewHealth <= 0) {
       $("#" + engagedEnemy["name"]).remove();
       $(".battle-ground-container").html(
-        "<p class='select-enemy-alert'>Select another enemy!</p>"
+        "<p class='select-enemy-alert'>Select another enemy above!</p>"
       );
       countOfDefeatedEnemies++;
       isEnemyEngaged = false;

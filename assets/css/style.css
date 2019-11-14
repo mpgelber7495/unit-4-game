@@ -39,7 +39,7 @@ body {
 .character-holder {
   width: 120px;
   padding-left: 15px;
-  border: 4px solid green;
+  border: 4px solid rgb(27, 44, 111);
   padding-right: 15px;
   padding-bottom: 0px;
   background-color: beige;
@@ -52,11 +52,12 @@ body {
 }
 
 .enemy {
-  border: 4px solid red;
+  border: 4px solid rgb(140, 8, 8);
 }
 
 .enemy:hover {
-  background-color: firebrick;
+  background-color: rgb(74, 9, 9);
+  color: white;
 }
 
 .engaged-enemy {
@@ -84,15 +85,19 @@ body {
 
 #fight-description-holder {
   text-align: center;
-  color: red;
+  color: white;
+  font-size: 20px;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .select-enemy-alert {
-  background-color: yellow;
-  color: red;
-  font-weight: 900;
+  background-color: rgba(157, 0, 255, 0.488);
+  color: black;
+  padding: 3px;
+  font-weight: 700;
   padding-right: 10px;
   padding-left: 10px;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 #crown {

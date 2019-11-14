@@ -14,3 +14,8 @@
   border: 4px solid black;
   background-color: firebrick;
 }
+
+.battle-ground button {
+  margin: 4px;
+  background-color: aqua;
+}

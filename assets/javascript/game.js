@@ -21,6 +21,7 @@ function createCharacterBox(character, characterClass = "") {
     " </p> </div>";
   return charachterHTML;
 }
+
 $("#restart-button").toggle();
 
 function addCharactersToSelectionArea() {
@@ -76,7 +77,6 @@ $(".character-holder").click(function(event) {
 // Listen for you to select an enemy if isEnemyEngaged is false
 $(".enemies-to-attack").on("click", ".enemy", function(event) {
   if (!isEnemyEngaged) {
-    console.log("this", $(this));
     var enemyCharacterName = $(this).attr("id");
     enemyCharacter = selectCharacterByName(enemyCharacterName);
     $(this).remove();
@@ -88,7 +88,8 @@ $(".enemies-to-attack").on("click", ".enemy", function(event) {
     if (!isBattleGroundLaunched) {
       $(".battle-ground").toggle();
       isBattleGroundLaunched = true;
-    } else isEnemyEngaged = true;
+    }
+    isEnemyEngaged = true;
   }
 });
 
@@ -108,12 +109,13 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     $("#" + engagedEnemy["name"]).remove();
     countOfDefeatedEnemies++;
     isEnemyEngaged = false;
+
     if (countOfDefeatedEnemies === characters.length - 1) {
-      //YOU WIN
+      $("#restart-button").toggle();
     }
   }
   if (yourCharacterNewHealth <= 0) {
-    gameOver();
+    $("#restart-button").toggle();
     $("#" + yourCharacter["name"] + "-health-points").text(0);
   }
 }
@@ -124,10 +126,14 @@ function refreshCharacterHealthPointsOnDOM(character) {
   $(characterID).text(newHealthPoints);
 }
 
-function gameOver() {
-  $("#restart-button").toggle();
-}
-
 function restartGame() {
   $("#restart-button").toggle();
+  $(".select-character-row").toggle();
+  yourCharacter;
+  isEnemyEngaged = false;
+  yourCharacterOriginalAttackPower;
+  enemyCharacter;
+  isBattleGroundLaunched = false;
+  countOfDefeatedEnemies = 0;
+  addCharactersToSelectionArea();
 }

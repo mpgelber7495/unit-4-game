@@ -100,7 +100,7 @@ $(".enemies-to-attack").on("click", ".enemy", function(event) {
 });
 
 function enemiesFight(yourCharacter, engagedEnemy) {
-  if (gameIsOver === false) {
+  if (gameIsOver === false && engagedEnemy["healthPoints"] > 0) {
     var enemyNewHealth =
       engagedEnemy["healthPoints"] - yourCharacter["attackPower"];
     var yourCharacterNewHealth =

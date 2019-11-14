@@ -1,3 +1,4 @@
+var charactersInstant = newCharactersArr();
 var yourCharacter;
 var isEnemyEngaged = false;
 var yourCharacterOriginalAttackPower;
@@ -25,9 +26,9 @@ function createCharacterBox(character, characterClass = "") {
 $("#restart-button").toggle();
 
 function addCharactersToSelectionArea() {
-  for (var i = 0; i < characters.length; i++) {
+  for (var i = 0; i < charactersInstant.length; i++) {
     $(".select-character-holder")[0].innerHTML += createCharacterBox(
-      characters[i]
+      charactersInstant[i]
     );
   }
   $(".your-character-row").toggle();
@@ -41,18 +42,18 @@ function addCharactersToAreaClass(character, areaClass, characterClass) {
 }
 
 function selectCharacterByName(selectedCharacterName) {
-  for (var i = 0; i < characters.length; i++) {
-    if (characters[i]["name"] === selectedCharacterName) {
-      return characters[i];
+  for (var i = 0; i < charactersInstant.length; i++) {
+    if (charactersInstant[i]["name"] === selectedCharacterName) {
+      return charactersInstant[i];
     }
   }
 }
 
 function addCharactersToEnemiesToAttackArea(selectedCharacterName) {
-  for (var i = 0; i < characters.length; i++) {
-    if (characters[i]["name"] !== selectedCharacterName) {
+  for (var i = 0; i < charactersInstant.length; i++) {
+    if (charactersInstant[i]["name"] !== selectedCharacterName) {
       addCharactersToAreaClass(
-        characters[i],
+        charactersInstant[i],
         ".enemies-to-attack-holder",
         "enemy"
       );
@@ -65,10 +66,11 @@ $(".character-holder").click(function(event) {
   if (!yourCharacter) {
     yourCharacterName = event.currentTarget.id;
     yourCharacter = selectCharacterByName(yourCharacterName);
-    $(".select-character-row").remove();
+    $(".select-character-holder").html("");
+    $(".select-character-row").toggle();
     $(".your-character-row").toggle();
     $(".enemies-to-attack").toggle();
-    addCharactersToAreaClass(yourCharacter, ".your-character-row-holder");
+    addCharactersToAreaClass(yourCharacter, ".your-character-holder");
     addCharactersToEnemiesToAttackArea(yourCharacterName);
     yourCharacterOriginalAttackPower = yourCharacter["attackPower"];
   }
@@ -110,7 +112,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     countOfDefeatedEnemies++;
     isEnemyEngaged = false;
 
-    if (countOfDefeatedEnemies === characters.length - 1) {
+    if (countOfDefeatedEnemies === charactersInstant.length - 1) {
       $("#restart-button").toggle();
     }
   }
@@ -127,9 +129,13 @@ function refreshCharacterHealthPointsOnDOM(character) {
 }
 
 function restartGame() {
+  charactersInstant = newCharactersArr();
   $("#restart-button").toggle();
   $(".select-character-row").toggle();
-  yourCharacter;
+  // $(".your-character-row").toggle();
+  // $(".enemies-to-attack").toggle();
+  $(".your-character-holder").html("");
+  yourCharacter = undefined;
   isEnemyEngaged = false;
   yourCharacterOriginalAttackPower;
   enemyCharacter;

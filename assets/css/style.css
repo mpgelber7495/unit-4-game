@@ -83,6 +83,22 @@ body {
   color: firebrick;
 }
 
+#restart-button {
+  font-size: 20px;
+  border-radius: 10px;
+  border: 3px solid black;
+  font-family: "Josefin Sans", sans-serif;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: yellow;
+  color: red;
+}
+
+#restart-button:hover {
+  background-color: red;
+  color: yellow;
+}
+
 #fight-description-holder {
   text-align: center;
   color: white;
@@ -91,8 +107,8 @@ body {
 }
 
 .select-enemy-alert {
-  background-color: rgba(157, 0, 255, 0.488);
-  color: black;
+  background-color: rgba(0, 238, 255, 0.488);
+  color: rgb(161, 7, 7);
   padding: 3px;
   font-weight: 700;
   padding-right: 10px;

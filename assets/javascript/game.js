@@ -1,4 +1,4 @@
-// 1. create responses for when someone wins and dies
+// bold fighting responses
 // PREVENT THE end holder from expanding really big
 // 4. Switch up the stats on characters
 

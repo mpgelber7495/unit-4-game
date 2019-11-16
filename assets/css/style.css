@@ -8,7 +8,8 @@ body {
 
 .heading-text {
   color: white;
-  font-size: 50px;
+  font-size: 55px;
+  font-weight: 800;
   font-family: "Josefin Sans", sans-serif;
 }
 .game-stage-heading,

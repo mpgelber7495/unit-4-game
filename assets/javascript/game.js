@@ -1,16 +1,17 @@
-// bold fighting responses
-// PREVENT THE end holder from expanding really big
-// 4. Switch up the stats on characters
-
+// instantiate characters using the function built in data.js
 var charactersInstant = newCharactersArr();
+// The character that the player (you) has chosen
 var yourCharacter;
+// is an enemy currently chosen to fight
 var isEnemyEngaged = false;
 var yourCharacterOriginalAttackPower;
 var enemyCharacter;
+// is the battle ground area of the game launched
 var isBattleGroundLaunched = false;
 var countOfDefeatedEnemies = 0;
 var gameIsOver = false;
 var didWinOrLossJustOccur = false;
+// Function that will create the HTML for a character and assign the div to the characterClass that you input
 function createCharacterBox(character, characterClass = "") {
   var { name, imageURL, healthPoints } = character;
   return `<div id="${name}" class="mx-3 character-holder ${characterClass} d-flex flex-column align-items-center"> 
@@ -19,8 +20,9 @@ function createCharacterBox(character, characterClass = "") {
     <p class="mb-0 character-health-points" id="${name}-health-points">${healthPoints}</p> </div>`;
 }
 
+// hide the restart button
 $("#restart-button").toggle();
-
+// add the characters to the area to be selected and hide the irrelevant text for other areas
 function addCharactersToSelectionArea() {
   for (var i = 0; i < charactersInstant.length; i++) {
     $(".select-character-holder")[0].innerHTML += createCharacterBox(
@@ -33,10 +35,12 @@ function addCharactersToSelectionArea() {
 }
 addCharactersToSelectionArea();
 
+// Creates a new character with the characterClass and adds to the area with areaClass
 function addCharactersToAreaClass(character, areaClass, characterClass) {
   $(areaClass)[0].innerHTML += createCharacterBox(character, characterClass);
 }
 
+// Allows characters to be selected by name
 function selectCharacterByName(selectedCharacterName) {
   for (var i = 0; i < charactersInstant.length; i++) {
     if (charactersInstant[i]["name"] === selectedCharacterName) {
@@ -44,7 +48,7 @@ function selectCharacterByName(selectedCharacterName) {
     }
   }
 }
-
+// Add the enemies to enemies-to-attack-holder
 function addCharactersToEnemiesToAttackArea(selectedCharacterName) {
   for (var i = 0; i < charactersInstant.length; i++) {
     if (charactersInstant[i]["name"] !== selectedCharacterName) {
@@ -75,7 +79,7 @@ function yourCharacterEventListener() {
 }
 yourCharacterEventListener();
 
-// Listen for you to select an enemy if isEnemyEngaged is false
+// Listen for selection of enemy if isEnemyEngaged is false
 $(".enemies-to-attack").on("click", ".enemy", function(event) {
   if (isEnemyEngaged === false && gameIsOver === false) {
     var enemyCharacterName = $(this).attr("id");
@@ -96,6 +100,7 @@ $(".enemies-to-attack").on("click", ".enemy", function(event) {
   }
 });
 
+// fight yourCharacter and engagedEnemy
 function enemiesFight(yourCharacter, engagedEnemy) {
   if (gameIsOver === false && engagedEnemy["healthPoints"] > 0) {
     var enemyNewHealth =
@@ -110,6 +115,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
     fightDescription(yourCharacter, engagedEnemy);
     refreshCharacterHealthPointsOnDOM(yourCharacter);
     refreshCharacterHealthPointsOnDOM(engagedEnemy);
+    // monitor for enemy dying
     if (enemyNewHealth <= 0) {
       $("#" + engagedEnemy["name"]).remove();
       $(".battle-ground-container").html(
@@ -117,7 +123,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
       );
       countOfDefeatedEnemies++;
       isEnemyEngaged = false;
-
+      // monitor for win of game
       if (countOfDefeatedEnemies === charactersInstant.length - 1) {
         isEnemyEngaged = false;
         gameIsOver = true;
@@ -125,6 +131,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
         gameWon();
       }
     }
+    // monitor for loss
     if (yourCharacterNewHealth <= 0) {
       $("#restart-button").toggle();
       $("#" + yourCharacter["name"] + "-health-points").text(0);
@@ -134,6 +141,7 @@ function enemiesFight(yourCharacter, engagedEnemy) {
   }
 }
 
+// refreshes an individual characters HP on DOM
 function refreshCharacterHealthPointsOnDOM(character) {
   var newHealthPoints = character["healthPoints"];
   var characterID = "#" + character["name"] + "-health-points";
@@ -162,20 +170,21 @@ function restartGame() {
   yourCharacterEventListener();
 }
 
+// Provides fun and hilarious descriptions of the fighting!
 function fightDescription(yourCharacter, engagedEnemy) {
   var fightText =
     yourCharacter["name"] +
-    " " +
+    " <b>" +
     attackNames[Math.floor(Math.random() * attackNames.length)] +
-    " " +
+    "</b> " +
     engagedEnemy["name"] +
     " causing " +
     yourCharacter["attackPower"] +
     " in damage! <br> " +
     engagedEnemy["name"] +
-    " retaliated and " +
+    " retaliated and <b>" +
     attackNames[Math.floor(Math.random() * attackNames.length)] +
-    " " +
+    "</b> " +
     yourCharacter["name"] +
     " causing " +
     engagedEnemy["attackPower"] +
